@@ -1,5 +1,5 @@
 import styles from "./Post.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 
 import React from "react";
@@ -7,6 +7,11 @@ import React from "react";
 const Post = () => {
   const { id } = useParams();
   const { document: post, loading } = useFetchDocument("posts", id);
+  const navigate = useNavigate();
+
+  const getBack = () => {
+    navigate("/");
+  };
 
   return (
     <div>
@@ -26,6 +31,9 @@ const Post = () => {
                 </p>
               ))}
           </div>
+          <button onClick={getBack} className="btn btn-outline">
+            Return
+          </button>
         </div>
       )}
     </div>
